@@ -1,6 +1,7 @@
 <html>
 <!--
  * 抽12月小游戏
+ * https://github.com/zhangchanghai/games.git
  * @author zhangch5
  * @date 2021/7/2 16:09
 -->
@@ -196,7 +197,7 @@
                     cards: [],
                     showCardCount: 0,
                     chooseItemIndex: 0,
-                    maxGroup: 1,//组数
+                    maxGroup: 12,//组数
                     maxItem: 4,//每组个数
                     ny: 180,
                     loadingFun: null,
@@ -209,7 +210,7 @@
                 for (var i = 1; i <= this.global.maxItem * this.global.maxGroup; i++) {
                     this.global.cards.push(i);
                 }
-                this.global.cards = [1, 2, 3, 4]
+                //this.global.cards = [1, 2, 3, 4,5,6,7,8]
                 this.global.cards.sort(function() {
                     return (0.5-Math.random());
                 });
