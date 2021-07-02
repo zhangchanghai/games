@@ -127,7 +127,6 @@
 
         .dialog {
             display: none;
-            color: red;
             font-size: 100px;
             z-index: 9999;
             text-align: center;
@@ -137,6 +136,12 @@
             transform: translate(-50%, -50%);
             font-style: oblique;
             font-weight: bold;
+        }
+        .succ {
+            color: red;
+        }
+        .err {
+            color: gray;
         }
     </style>
 </head>
@@ -166,7 +171,8 @@
             </div>
         </div>
     </div>
-    <div class="dialog"> 恭喜您通关了!!</div>
+    <div class="dialog succ">恭喜您通关了!!</div>
+    <div class="dialog err">很遗憾失败了!!</div>
 </div>
 <script>
         const game = {
@@ -308,8 +314,10 @@
                 });
                 $(`.box_card[groupIndex=${groupIndex}]`).append(chooseDom);
                 let nextCard = $(`.box_card[groupIndex=${groupIndex}]`).find(`.box_item:first`);
-                if (nextCard.attr('show') == 1) {
-                    nextCard = $(`.box_item[show=0]:first`);
+                if (nextCard.attr('show') == 1 && (this.global.cards.length - this.global.showCardCount > 0)) {
+                    //nextCard = $(`.box_item[show=0]:first`);
+                    nextCard = null;
+                    $('.err').fadeIn();
                 }
                 if (nextCard)
                     this._showCard(nextCard.attr("index"));
@@ -329,7 +337,7 @@
             },
             _tryEnd() {
                 if (this.global.showCardCount >= this.global.cards.length) {
-                    $('.dialog').fadeIn()
+                    $('.succ').fadeIn()
                 }
             },
             _showLoading() {
